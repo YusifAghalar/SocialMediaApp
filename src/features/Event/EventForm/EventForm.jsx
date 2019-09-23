@@ -11,10 +11,17 @@ import { Segment, Form,Button } from 'semantic-ui-react';
      hostedBy:'',
    }
 
-
+   componentDidMount(){
+     if(this.props.selectedEvent){
+       this.setState({...this.props.selectedEvent })
+     }
+   }
    handleFormSubmit=(event)=>{
-     event.preventDefault();
-     this.props.createNewEvent(this.state);
+    event.preventDefault();
+    if(this.state.id)
+      this.props.updateEvent(this.state)
+    else
+    this.props.createNewEvent(this.state);
    }
    
 
@@ -78,7 +85,7 @@ import { Segment, Form,Button } from 'semantic-ui-react';
                          onChange={this.handleInputChange} placeholder="Enter the Description of the event" />
                       </Form.Field>
                       <Button positive type="submit">
-                        Submit
+                        {this.state.id?"Update":"Create"}
                       </Button>
                       <Button onClick={this.props.toggleFormHandler} type="button">Cancel</Button>
                     </Form>

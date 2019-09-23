@@ -4,17 +4,19 @@ import EventListAttende from './EventListAttende';
 
  class EventListItem extends Component {
     render() {
+      console.log(this.props.selectEvent)
+      const {selectEvent,event,deleteEvent }=this.props;
         return (
             <React.Fragment>
                      <Segment.Group>
                         <Segment>
                           <Item.Group>
                             <Item>
-                              <Item.Image size="tiny" circular src={this.props.event.hostPhotoURL} />
+                              <Item.Image size="tiny" circular src={event.hostPhotoURL} />
                               <Item.Content>
-                                <Item.Header as="a">{this.props.event.title}</Item.Header>
+                                <Item.Header as="a">{event.title}</Item.Header>
                                 <Item.Description>
-                                  Hosted by  {this.props.event.hostedBy}
+                                  Hosted by  {event.hostedBy}
                                 </Item.Description>
                               </Item.Content>
                             </Item>
@@ -22,13 +24,13 @@ import EventListAttende from './EventListAttende';
                         </Segment>
                         <Segment>
                           <span>
-                            <Icon name="clock" /> {this.props.event.date} |
-                            <Icon name="marker" /> {this.props.event.venue}
+                            <Icon name="clock" /> {event.date} |
+                            <Icon name="marker" /> {event.venue}
                           </span>
                         </Segment>
                         <Segment secondary>
                           <List horizontal>
-                            {this.props.event.attendee&&this.props.event.attendees.map(attendee=>  
+                            {event.attendee&&event.attendees.map(attendee=>  
                               <EventListAttende key={attendee.id} attendee={attendee} /> )
                               }
                            
@@ -38,7 +40,10 @@ import EventListAttende from './EventListAttende';
                         </Segment>
                         <Segment clearing>
                           <p>{this.props.event.description}  </p>
-                          <Button as="a" color="teal" floated="right" content="View" />
+                          <Button as="a" onClick={()=>selectEvent(event)} color="teal" floated="right" content="View" />
+                          <Button as="a" negative onClick={()=>deleteEvent(event.id)}  floated="right" content="Delete" />
+
+
                         </Segment>
                       </Segment.Group>  
             </React.Fragment>

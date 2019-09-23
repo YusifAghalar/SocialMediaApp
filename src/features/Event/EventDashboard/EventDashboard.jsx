@@ -60,12 +60,30 @@ const eventsHardCoded = [
 
     state={
         isOpen:true,
-        events:eventsHardCoded
+        events:eventsHardCoded,
+        selectedEvent:null
     }
 
-    formToggleHandler=()=>(
-        this.setState(({isOpen}) =>({isOpen:!isOpen}))
-    )
+   
+
+    createEventFormOpen=()=>{
+      this.setState({
+        isOpen:true,
+        selectedEvent:null
+      })
+    }
+    createEventFormClose=()=>{
+      this.setState({
+        isOpen:false,
+      })
+    }
+
+    selectEvent=(sEvent)=>{
+      this.setState({
+        selectedEvent:sEvent,
+        isOpen:true
+      })
+    }
     createNewEvent=(newEvent)=>{
       newEvent.id=Math.floor(Math.random() * 1000);
       newEvent.hostPhotoURL="/assets/user.png"
@@ -76,18 +94,42 @@ const eventsHardCoded = [
           isOpen:false,
           })
         )
-     
       }
+    handleDeleteEvent = (id)=>(
+      this.setState(({events}) =>(
+       {events:events.filter(x=>x.id!==id)})
+      )
+    )
+    handleUpdateEvent = (updatedEvent)=>(
+      this.setState(({events})=>({
+        events:events.map(event=>{
+          if(event.id===updatedEvent.id)
+            return {...updatedEvent}
+          else
+            return event
+        })
+      })
+      
+      )
+    )  
+      
     
+      
     render() {
         return (
            <Grid>
                <Grid.Column width={10}>
-                    <EventList events={this.state.events} />
+                    <EventList events={this.state.events} selectEvent={this.selectEvent} deleteEvent={this.handleDeleteEvent} />
                </Grid.Column>
                <Grid.Column width={6}>
-                    <Button  positive onClick={this.formToggleHandler}  content="Create new Post" />
-                    {this.state.isOpen&&<EventForm createNewEvent={this.createNewEvent}  postFormHandler={this.formToggleHandler}/>}
+                    <Button  positive onClick={this.createEventFormOpen}  content="Create new Post" />
+                    {this.state.isOpen&&
+                    <EventForm  key={this.state.selectedEvent?this.state.selectedEvent.id:0}
+                               selectedEvent={this.state.selectedEvent} 
+                               createNewEvent={this.createNewEvent} 
+                               toggleFormHandler={this.createEventFormClose}
+                               updateEvent={this.handleUpdateEvent}
+                               />}
                 </Grid.Column>
            </Grid>
         )
