@@ -9,7 +9,10 @@
     "semantic-ui": "^2.4.2",
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-react": "0.87.3",
-    "react-router-dom": "5.0.0"
+    "react-router-dom": "5.0.0",
+    "react-redux": "^5.1.1",
+    "redux": "4.0.1",
+    "react-redux-firebase": "^2.2.6"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -33,6 +36,7 @@
     ]
   },
   "devDependencies": {
-    "@types/react-router": "^5.0.5"
+    "@types/react-router": "^5.0.5",
+    "redux-devtools-extension": "2.13.8"
   }
 }

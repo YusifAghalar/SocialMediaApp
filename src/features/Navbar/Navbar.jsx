@@ -13,6 +13,7 @@ export default class Navbar extends Component {
                             Social Media
                           </Menu.Item>
                           <Menu.Item  as={NavLink} to="/events" name="Events" />
+                          <Menu.Item  as={NavLink} to="/test" name="Test" />
                           <Menu.Item as={Link} to="/createEvent">
                             <Button floated="right" positive inverted content="Create Event" />
                           </Menu.Item>

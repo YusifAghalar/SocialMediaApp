@@ -9,6 +9,7 @@ import SettingsDashboard from '../../features/User/Settings/SettingsDashboard';
 import { Route } from 'react-router-dom';
 import EventForm from '../../features/Event/EventForm/EventForm';
 import HomePage from '../../features/Home/HomePage';
+import TestArea from '../../features/Test/TestArea';
 
 
 function App() {
@@ -26,6 +27,8 @@ function App() {
               <Route exact  path="/profile/:id"  component={UserDetailedPage}    />
               <Route exact  path="/settings"  component={SettingsDashboard}    />
               <Route exact  path="/createEvent"  component={EventForm}    />
+              <Route exact  path="/test"  component={TestArea}    />
+
             </Container>
           </React.Fragment>
         )} />
