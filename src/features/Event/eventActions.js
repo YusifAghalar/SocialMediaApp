@@ -1,5 +1,5 @@
 import {
-    CREATE_EVENT, DELETE_EVENT
+    CREATE_EVENT, DELETE_EVENT, UPDATE_EVENT
 } from "./eventConstants";
 
 export const create_event = (event) => {
