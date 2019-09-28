@@ -1,7 +1,7 @@
 import React from 'react'
 import { Button,Header,Segment,Item,Image } from 'semantic-ui-react';
 
-export default function EventDetailedHeader() {
+export default function EventDetailedHeader({event}) {
     const eventImageStyle = {
         filter: 'brightness(30%)'
     };
@@ -14,10 +14,13 @@ export default function EventDetailedHeader() {
         height: 'auto',
         color: 'white'
     };
+    let imageUrl=event.category+".jpg"
     return (
+      
+       
         <div>
                <Segment.Group>
-                    <Image src="/assets/categoryImages/drinks.jpg" fluid style={eventImageStyle} />
+                    <Image src={'/assets/categoryImages/'+imageUrl} fluid style={eventImageStyle} />
                   <Segment basic attached="top" style={{ padding: '0' }}>
             
                     <Segment basic style={eventImageTextStyle}>
@@ -26,12 +29,12 @@ export default function EventDetailedHeader() {
                           <Item.Content>
                             <Header
                               size="huge"
-                              content="Event Title"
+                              content={event.title}
                               style={{ color: 'white' }}
                             />
-                            <p>Event Date</p>
+                            <p>{event.date}</p>
                             <p>
-                              Hosted by <strong>Hosted by</strong>
+                              Hosted by <strong>{event.hostedBy}</strong>
                             </p>
                           </Item.Content>
                         </Item>
