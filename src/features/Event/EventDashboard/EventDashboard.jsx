@@ -13,7 +13,7 @@ const mapState=(state)=>({
 const actions={
   create_event,
   update_event,
-  delete_event
+  delete_event,
 }
  class EventDashboard extends Component {
 
@@ -22,17 +22,7 @@ const actions={
         authenticated:false
     };
     
-    createNewEvent=(newEvent)=>{
-      newEvent.id=Math.floor(Math.random() * 1000);
-      newEvent.hostPhotoURL="/assets/user.png"
-      this.props.create_event(newEvent);
-      this.setState({
-        selectedEvent:null,
-        isOpen:false
-      })
-
-      }
-    handleDeleteEvent = (id)=>(
+    deleteEvent = (id)=>(
       this.props.delete_event(id)
     )
     handleUpdateEvent = (updatedEvent)=>(
@@ -44,7 +34,7 @@ const actions={
         return (
            <Grid>
                <Grid.Column width={10}>
-                    <EventList events={this.props.data} selectEvent={this.selectEvent} deleteEvent={this.handleDeleteEvent} />
+                    <EventList events={this.props.data}  deleteEvent={this.handleDeleteEvent} />
                </Grid.Column>
                <Grid.Column width={6}>
                    <h1>Attendee list</h1>

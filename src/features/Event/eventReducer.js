@@ -64,7 +64,7 @@ const delete_event=(state=initialState,payload)=>{
 }
 const update_event=(state=initialState,payload)=>{
     
-    return [...state.filter(x=>x.id!==payload.event.id),payload]
+    return [...state.filter(x=>x.id!==payload.event.id),payload.event]
 }
 export default createReducer(initialState,{
     [CREATE_EVENT]:create_event,

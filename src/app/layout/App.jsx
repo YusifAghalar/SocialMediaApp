@@ -10,9 +10,10 @@ import { Route } from 'react-router-dom';
 import EventForm from '../../features/Event/EventForm/EventForm';
 import HomePage from '../../features/Home/HomePage';
 import TestArea from '../../features/Test/TestArea';
+import { Switch, withRouter } from 'react-router';
 
 
-function App() {
+function App(props) {
   return (
   <React.Fragment>
     
@@ -21,14 +22,15 @@ function App() {
           <React.Fragment>
             <Navbar/>
             <Container className="main">
-              <Route exact  path="/events"  component={EventDashboard}    />
-              <Route exact  path="/events/:id"  component={EventDetailedPage}    />
-              <Route exact  path="/people"  component={PeopleDashboard}    />
-              <Route exact  path="/profile/:id"  component={UserDetailedPage}    />
-              <Route exact  path="/settings"  component={SettingsDashboard}    />
-              <Route exact  path="/createEvent"  component={EventForm}    />
-              <Route exact  path="/test"  component={TestArea}    />
-
+              <Switch key={props.location.key} >
+                <Route exact  path="/events"  component={EventDashboard}    />
+                <Route exact  path="/events/:id"  component={EventDetailedPage}    />
+                <Route exact  path="/people"  component={PeopleDashboard}    />
+                <Route exact  path="/profile/:id"  component={UserDetailedPage}    />
+                <Route exact  path="/settings"  component={SettingsDashboard}    />
+                <Route exact  path={["/createEvent","/manage/:id"]}  component={EventForm}    />
+                <Route exact  path="/test"  component={TestArea}    />
+              </Switch>
             </Container>
           </React.Fragment>
         )} />
@@ -41,4 +43,4 @@ function App() {
   );
 }
 
-export default App;
+export default withRouter(App);
