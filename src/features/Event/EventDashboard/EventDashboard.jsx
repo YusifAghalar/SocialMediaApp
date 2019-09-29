@@ -22,7 +22,7 @@ const actions={
         authenticated:false
     };
     
-    deleteEvent = (id)=>(
+    handleDeleteEvent = (id)=>(
       this.props.delete_event(id)
     )
     handleUpdateEvent = (updatedEvent)=>(

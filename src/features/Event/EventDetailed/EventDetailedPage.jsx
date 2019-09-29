@@ -14,8 +14,7 @@ const mapStateToProps = (state, ownProps) => {
     if (state.event && state.event.length > 0) {
 
         event = state.event.filter(event => event.id === eventId)[0];
-        console.log(event); 
-        console.log(eventId); 
+      
 
         
     }
@@ -26,7 +25,7 @@ const mapStateToProps = (state, ownProps) => {
 }
 function EventDetailedPage({ event }) {
 
-    console.log(event)
+  
     return (
 
 

@@ -4,11 +4,12 @@ import { Form, Label } from 'semantic-ui-react';
 const TextArea = ({input,width,placeholder,type,meta:{touched,error}}) => {
     return (
       <Form.Field error={touched &&!!error } >
-          <textarea {...input} placeholder={placeholder}  />
+          <textarea {...input} placeholder={placeholder}  />      
           {touched&&error&&
-          <Label basic color='red'>
+          <Label  basic color='red'>
               {error}
           </Label>}
+             
       </Form.Field>
     )
 }

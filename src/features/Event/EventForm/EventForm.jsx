@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Segment, Form, Button, Grid, Header } from 'semantic-ui-react';
 import { connect } from 'react-redux'
 import { create_event, update_event } from '../eventActions'
+ import {composeValidators,combineValidators,isRequired,isNumeric,hasLengthGreaterThan} from 'revalidate'
 import { reduxForm, Field } from 'redux-form'
 import TextInput from '../../../app/common/form/TextInput';
 import TextArea from '../../../app/common/form/TextArea';
@@ -28,6 +29,17 @@ const mapStateToProps = (state, ownProps) => {
   };
 
 }
+var validator= combineValidators({
+  title:isRequired({message:"Title is required"}),
+  description:composeValidators(
+    isRequired({message:"Description is required"}),
+    hasLengthGreaterThan(4)({message:"Description should be more than 5"})
+    )(),
+  venue:isRequired({message:"Venue is required"}),
+  city:isRequired({message:"City is required"}),
+  date:isRequired({message:"Date is reqired"}),
+  category:isRequired({message:"Category can't be empty"})
+})
 const category = [
   { key: 'drinks', text: 'Drinks', value: 'drinks' },
   { key: 'culture', text: 'Culture', value: 'culture' },
@@ -63,18 +75,20 @@ class EventForm extends React.Component {
   }
 
 
-  handleInputChange = ({ target }) => (
-    this.setState((prevState) => (
-      {
-        [target.name]: target.value
-      }
-    )
-    )
+  //  handleInputChange = ({ target }) => (
+  //   this.setState((prevState) => (
+  //     {
+  //       [target.name]: target.value
+  //     }
+  //   )
+  //   )
 
-  )
+  // ) 
 
   render() {
+    const {invalid}=this.props
     return (
+      
       <Grid>
         <Grid.Column width={11}>
 
@@ -88,8 +102,8 @@ class EventForm extends React.Component {
               <Header sub color='teal' content='Event details' />
               <Field name='city' component={TextInput} placeholder="City" />
               <Field name='venue' component={TextInput} placeholder="Venue" />
-              <Field name='date' component={TextInput} placeholder="Date" />
-              <Button positive type="submit" content="Submit" />
+              <Field name='date' component={TextInput} placeholder="Date" type="date" />
+              <Button positive  disabled={invalid} type="submit" content="Submit" />
               <Button basic type="submit" content="Cancel" />
 
             </Form>
@@ -101,4 +115,4 @@ class EventForm extends React.Component {
     )
   }
 }
-export default connect(mapStateToProps, actions)(reduxForm({ form: 'eventForm' })(EventForm)); 
+export default connect(mapStateToProps, actions)(reduxForm({ form: 'eventForm' ,validate:validator})(EventForm)); 
