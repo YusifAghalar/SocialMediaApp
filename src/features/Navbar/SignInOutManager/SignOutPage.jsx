@@ -6,8 +6,8 @@ const SignOutPage = (props) => {
     const {handleAuth}=props;
     return (
         <React.Fragment>
-            <Button basic  onClick={handleAuth}  inverted content="Login" />
-            <Button basic inverted content="Register" style={{marginLeft: '0.5em'}}/> 
+            <Button basic  onClick={props.handleLogin}  inverted content="Login" />
+            <Button basic  onClick={props.handleRegister} inverted content="Register" style={{marginLeft: '0.5em'}}/> 
         </React.Fragment>
     )
 }

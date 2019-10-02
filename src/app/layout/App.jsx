@@ -11,12 +11,13 @@ import EventForm from '../../features/Event/EventForm/EventForm';
 import HomePage from '../../features/Home/HomePage';
 import TestArea from '../../features/Test/TestArea';
 import { Switch, withRouter } from 'react-router';
+import ModalManager from '../../features/Modal/ModalManager';
 
 
 function App(props) {
   return (
   <React.Fragment>
-    
+        <ModalManager/>
         <Route exact  path="/"  component={HomePage}    />
         <Route exact  path="/(.+)"  render={()=>(
           <React.Fragment>

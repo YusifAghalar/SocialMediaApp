@@ -1,5 +1,11 @@
 import React, { Component } from 'react'
 import { Dropdown, Image } from 'semantic-ui-react';
+import {openModal }from '../../Modal/modalActions';
+
+
+const actions={
+  openModal
+}
 
 class SignInPage extends Component {
     render() {
@@ -7,7 +13,7 @@ class SignInPage extends Component {
         return (
             <React.Fragment>
                   <Image avatar spaced="right" src='/assets/user.png' />
-                  <Dropdown pointing="top left" text="Username">
+                  <Dropdown pointing="top left" text={this.props.currentUser}>
                     <Dropdown.Menu>
                       <Dropdown.Item text="Create Event" icon="plus" />
                       <Dropdown.Item text="My Events" icon="calendar" />
