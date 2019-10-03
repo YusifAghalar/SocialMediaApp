@@ -10,7 +10,7 @@ const configureStore = ()=>{
 
     const middleware=[thunk];
 
-    const composedEnhancer=composeWithDevTools(appliMiddleware(...middleware))
+    const composedEnhancer=composeWithDevTools(applyMiddleware(...middleware))
     const store=createStore(rootReducer,composedEnhancer);
     return store;
 }

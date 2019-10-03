@@ -1,15 +1,15 @@
-import { INCREMENT_COUNTER, DECREMENT_COUNTER } from "./testConstants";
+import { INCREMENT_COUNTER, DECREMENT_COUNTER, INCREMENT_COUNTER_ASYNC, DECREMENT_COUNTER_ASYNC } from "./testConstants";
 import { createReducer } from "../../app/common/util/createReducer";
-
+import { action_started,action_finished } from "../Async/asyncActions";
 const initialState={
     data:42
 }
 
 const increment_counter=(state=initialState,payload)=>{
-    return{...state,data:state.data+1}
+    return{data:state.data+1}
 }
 const decrement_counter=(state=initialState,payload)=>{
-    return{...state,data:state.data-1}
+    return{data:state.data-1}
 }
 
 
